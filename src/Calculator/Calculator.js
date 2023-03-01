@@ -17,7 +17,7 @@ const Calculator = () => {
       } catch {
         alert("Expression Invalid");
       }
-    } else if (OPERATORS.includes(value) && (result === "" || result === "0")) {
+    } else if (OPERATORS.includes(value) && (result === "" || result === "0" || result === 0)) {
       alert("Operand Required!!");
       return;
       //operator should not be inserted into empty stack
@@ -29,7 +29,7 @@ const Calculator = () => {
       //current value is an operator & top of stack is also an operator
       setResult(result.slice(0, -1) + value);
       //overwrite the operator
-    } else if (value !== "0" && result === "0") {
+    } else if (value !== "0" && (result === "0" || result === 0|| result === "-0")) {
       setResult(value);
       // overwriting number if initially 0
       //otherwise number would be appended to zero
@@ -71,7 +71,7 @@ const Calculator = () => {
   };
 
   const allClear = () => {
-    setResult("");
+    setResult("0");
   };
 
   const backspace = () => {
